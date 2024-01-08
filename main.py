@@ -1,3 +1,6 @@
+# --------- DOCS 
+# In the first place create chat_ids.txt
+
 import telebot
 
 TOKEN = '6366196039:AAGyDNxMDbFYo09RhgJmOcfojbIrOKbSU6s'
@@ -15,8 +18,11 @@ def send_welcome(message):
 			f.write(str(chat_id) + '\n')
 
 def send_message_to_all(message_text):
-    with open('chat_ids.txt', 'r') as f:
-        chat_ids = f.read().splitlines()
+    try:
+        with open('chat_ids.txt', 'r') as f:
+            chat_ids = f.read().splitlines()
+    except FileNotFoundError:
+         print('Not Found chat_ids.txt')
 
     for chat_id in chat_ids:
         try:
